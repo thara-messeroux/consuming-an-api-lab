@@ -100,3 +100,13 @@ So we:
 
 Big idea:
 The server cleans and organizes data before sending it to the browser.
+
+## Step 7 — Show the forecast page
+
+What we did:
+- Turned the big API data into 5 simple daily items
+- Rendered `forecast.ejs` instead of sending plain text
+
+Why:
+The API gives too much data.
+We pick only what we need so the page is easy to read.
