@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Forecast</title>
+</head>
+
+<body>
+    <h1>5-Day Forecast 🌤</h1>
+
+    <p><strong>City:</strong>
+        <%= city %>
+    </p>
+    <p><strong>ZIP:</strong>
+        <%= zip %>
+    </p>
+
+    <h2>Forecast Cards</h2>
+
+    <ul>
+        <% forecast.forEach(item=> { %>
+            <li>
+                <strong>
+                    <%= item.day %>
+                </strong> —
+                <%= item.temp %>°F —
+                    <%= item.description %>
+            </li>
+            <% }) %>
+    </ul>
+
+    <p><a href="/">← Search another ZIP</a></p>
+</body>
+
+</html>

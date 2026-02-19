@@ -36,6 +36,7 @@ Principles:
 What we did:
 - Created Express server
 - Server listens on port 3000
+- Server running on http://localhost:3000
 
 Why:
 The browser needs a server to respond to requests.

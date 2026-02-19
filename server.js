@@ -35,13 +35,35 @@ app.post("/forecast", async (req, res) => {
             },
         });
 
-        /* temporary: show a tiny proof it worked */
-        const cityName = response.data.city.name;
-        const firstItem = response.data.list[0];
-        const time = moment(firstItem.dt_txt).format("ddd hA");
-        const temp = firstItem.main.temp;
+        /* get city name */
+        const city = response.data.city.name;
 
-        res.send(`✅ Forecast loaded for ${cityName}. First slot: ${time}, ${temp}°F`);
+        /* full forecast list from API (every 3 hours) */
+        const list = response.data.list;
+
+        /* we will collect one forecast per day */
+        const daily = [];
+
+        /* loop through the big list */
+        for (const item of list) {
+
+            /* choose the 12:00 PM forecast each day */
+            if (item.dt_txt.includes("12:00:00")) {
+                daily.push({
+                    day: moment(item.dt_txt).format("ddd"), /* Mon, Tue, etc */
+                    temp: Math.round(item.main.temp),       /* round temperature */
+                    description: item.weather[0].description
+                });
+            }
+        }
+
+        /* send clean data to forecast.ejs */
+        res.render("forecast", {
+            city,
+            zip,
+            forecast: daily
+        });
+
     } catch (err) {
         res.status(500).send("❌ Could not load forecast. Check ZIP + API key.");
     }
