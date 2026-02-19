@@ -80,3 +80,22 @@ Principles:
 - External service integration
 - Backend as middle layer
 - Data flow control (Browser → Server → API → Server → Browser)
+
+## Step 6 — Reading the Weather Data
+
+What we did:
+- Got weather data from the API
+- Looked inside the response
+- Picked out the parts we care about (city name, time, temperature)
+
+Why:
+The API sends back a big box of information.
+We only need a few small pieces from that box.
+
+So we:
+1. Open the box (response.data)
+2. Find the useful parts
+3. Prepare them to show on the page
+
+Big idea:
+The server cleans and organizes data before sending it to the browser.
